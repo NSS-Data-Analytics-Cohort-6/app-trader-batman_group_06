@@ -14,3 +14,33 @@ from app_store_apps as a
 inner join play_store_apps as g
 on a.name = g.name
 where a.rating >= 4.5 and g.rating >= 4.5;
+
+SELECT *
+FROM app_store_apps
+order by name asc;
+
+select 
+	a.name,
+	a.price,
+	p.price,
+	a.primary_genre,
+	p.genres,
+	a.review_count,
+	p.review_count,
+	round(((a.rating + p.rating)/2),2) as avg_rating
+	sum(a.review_count + p.review_count) as total_reviews
+from app_store_apps as a
+inner join play_store_apps as p
+on a.name = p.name
+group by 
+	a.name,
+	a.price,
+	p.price,
+	a.primary_genre,
+	p.genres,
+	a.rating,
+	p.rating,
+	a.review_count,
+	p.review_count
+order by avg_rating desc
+and  desc;
