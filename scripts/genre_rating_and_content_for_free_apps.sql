@@ -1,0 +1,15 @@
+-- SELECT DISTINCT g.name,
+-- a.rating AS apple_rating,
+-- g.rating AS google_rating,
+-- g.genres AS google_genre,
+-- a.primary_genre AS apple_genre,
+-- g.content_rating AS google_audience,
+-- a.content_rating AS apple_audience,
+-- CAST(a.price AS money) AS apple_price,
+-- CAST(g.price AS money) AS google_price
+-- FROM play_store_apps AS g
+-- JOIN app_store_apps AS a
+-- ON g.name = a.name
+-- WHERE a.price = '0' AND g.type = 'Free'
+-- ORDER BY apple_rating DESC, google_rating DESC;
+--Query to assess genre and audience in comparison to rating.
