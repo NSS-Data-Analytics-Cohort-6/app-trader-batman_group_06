@@ -13,3 +13,35 @@
 -- WHERE a.price = '0' AND g.type = 'Free'
 -- ORDER BY apple_rating DESC, google_rating DESC;
 --Query to assess genre and audience in comparison to rating.
+
+-- SELECT DISTINCT g.name,
+-- a.rating AS apple_rating,
+-- g.rating AS google_rating,
+-- a.primary_genre AS apple_genre,
+-- g.genres AS google_genre,
+-- g.category AS google_category,
+-- g.install_count,
+-- g.content_rating AS google_content,
+-- a.content_rating AS apple_content,
+-- a.price AS apple_price,
+-- g.price AS google_price
+-- FROM play_store_apps AS g
+-- JOIN app_store_apps AS a
+-- ON g.name = a.name
+-- ORDER BY install_count DESC;
+
+-- SELECT a.name,
+-- a.rating AS apple_rating,
+-- g.rating AS google_rating,
+-- a.primary_genre AS apple_genre,
+-- g.category AS google_genre,
+-- CAST(a.price AS money) AS apple_price,
+-- CAST(g.price AS money) AS google_price,
+-- a.content_rating AS apple_content,
+-- g.content_rating AS google_content,
+-- g.install_count AS google_install
+-- FROM app_store_apps AS a
+-- JOIN play_store_apps AS g
+-- ON g.name = a.name
+-- ORDER BY g.rating DESC;
+--Updated query to include content rating and google category as additional perspectives for assessment and diversification of recommendations.
