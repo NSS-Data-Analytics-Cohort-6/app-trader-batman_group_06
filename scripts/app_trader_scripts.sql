@@ -152,3 +152,42 @@ group by
 order by
 	avg_rating desc;
 	
+/*Top 10 List*/
+
+select
+	distinct a.name,
+	a.primary_genre,
+	p.genres,
+	p.install_count,
+	a.review_count,
+	p.review_count,
+	a.rating,
+	p.rating,
+	round(((a.rating + p.rating)/2),2) as avg_rating,
+	abs(a.rating - p.rating) as diff_rating,
+	cast(a.price as money) as app_price,
+	cast(p.price as money) as play_price
+from app_store_apps as a
+inner join play_store_apps as p
+on a.name = p.name
+where
+	a.content_rating <> '17+'
+	and p.content_rating <> 'Mature%'
+	and a.price <= '1.00'
+	and p.price <= '1.00'
+	and abs(a.rating - p.rating) < '0.5'
+group by
+	a.name,
+	a.rating,
+	p.rating,
+	a.primary_genre,
+	p.genres,
+	p.install_count,
+	a.review_count,
+	p.review_count,
+	a.price,
+	p.price
+order by avg_rating desc
+limit 12;
+	
+	
